@@ -69,12 +69,8 @@ SELECT time FROM times WHERE (SELECT id FROM shows WHERE name = 'Edinburgh Royal
 SELECT COUNT(name) FROM shows INNER JOIN shows_users ON shows_users.show_id=shows.id WHERE shows.name = 'Shitfaced Shakespeare';
 
 - Select all of the user names and the count of shows they're going to see.
-
+SELECT name, COUNT(show_id) FROM shows_users INNER JOIN users ON users.id=shows_users.user_id GROUP BY users.id;
 
 - SELECT all users who are going to a show at 17:15.
-
-Hints
-
-As with anything, if you get stuck, move on, then go back if you have time.
-Don't spend all night on it!
-Use resources online to solve harder ones - there are solutions to these questions that work with what we've learnt today, but other tools exist in SQL that could make the queries 'better' or 'easier'.
+##### This doesn't work - inner joins have stumped me!!
+SELECT name FROM users INNER JOIN shows_users ON shows_users.user_id=users.id WHERE name = (SELECT name FROM shows INNER JOIN times ON shows.id=times.show_id WHERE times.time = '17:15');
